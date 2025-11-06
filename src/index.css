@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Minimal theme tokens */
+[data-theme="light"] {
+  --accent: rgba(253, 72, 153, 1);
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --muted-text: #666666;
+  --surface: #f7f7f8;
+  --sidebar-bg: #f3f4f6;
+  --card-bg: #fafafa;
+  --border:rgba(253, 72, 153, 1);
+}
+
+[data-theme="dark"] {
+  --accent: rgba(253, 72, 153, 1);
+  --bg-color: #0b0c0f;
+  --text-color: #f5f7fa;
+  --muted-text: #a3aab8;
+  --surface: #111318;
+  --sidebar-bg: #0f1115;
+  --card-bg: #151821;
+  --border: rgba(253, 72, 153, 1);
+}
+
+/* Logo-based template (React blue accent from logo.svg) */
+[data-theme="logo"] {
+  --accent: rgba(253, 72, 153, 1);
+  --bg-color: #ffffff;
+  --text-color: #2a0f19;
+  --muted-text: #475569;
+  --surface: #f8fafc;
+  --sidebar-bg: #eef7fb;
+  --card-bg: #ffffff;
+  --border: rgba(253, 72, 153, 1);
+}
+
+/* High-contrast monochrome */
+[data-theme="mono"] {
+  --accent: rgba(236, 72, 153, 1);
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --muted-text: #666666;
+  --surface: #f7f7f7;
+  --sidebar-bg: #f2f2f2;
+  --card-bg: #ffffff;
+  --border: rgba(236, 72, 153, 1);
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Minimal reset for interactive elements */
+button {
+  font-family: inherit;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 12px;
+  }
+}
