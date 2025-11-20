@@ -1,6 +1,8 @@
+// App.js - Updated
 import { useState } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import { AdminProvider, useAdmin } from "./context/AdminContext";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
@@ -10,9 +12,11 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import "./App.css";
 
-function AppContent() {
+// Main App Layout (with sidebar)
+function AppLayout() {
   const [activeTab, setActiveTab] = useState("brand");
   const { currentUser } = useAuth();
+  const { isAdmin } = useAdmin();
 
   // If user is not logged in, show login page
   if (!currentUser) {
@@ -27,21 +31,24 @@ function AppContent() {
   );
 }
 
+// Main App with all providers
 function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <BrandProvider>
-          <ColorHistoryProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/*" element={<AppContent />} />
-              </Routes>
-            </BrowserRouter>
-          </ColorHistoryProvider>
-        </BrandProvider>
+        <AdminProvider>
+          <BrandProvider>
+            <ColorHistoryProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/*" element={<AppLayout />} />
+                </Routes>
+              </BrowserRouter>
+            </ColorHistoryProvider>
+          </BrandProvider>
+        </AdminProvider>
       </AuthProvider>
     </ThemeProvider>
   );

@@ -11,6 +11,13 @@ const Login = ({ onClose, switchToRegister }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Basic validation
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+    
     setError('');
     setLoading(true);
 
@@ -36,6 +43,7 @@ const Login = ({ onClose, switchToRegister }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
           <div className="form-group">
@@ -45,6 +53,7 @@ const Login = ({ onClose, switchToRegister }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
           <button type="submit" disabled={loading}>
@@ -53,11 +62,21 @@ const Login = ({ onClose, switchToRegister }) => {
         </form>
         <p>
           Don't have an account?{' '}
-          <button className="link-button" onClick={switchToRegister}>
+          <button 
+            type="button" 
+            className="link-button" 
+            onClick={switchToRegister}
+            disabled={loading}
+          >
             Register
           </button>
         </p>
-        <button className="close-button" onClick={onClose}>
+        <button 
+          type="button" 
+          className="close-button" 
+          onClick={onClose}
+          disabled={loading}
+        >
           Close
         </button>
       </div>

@@ -1,0 +1,278 @@
+/* PaintCalculator.css */
+.paint-calculator {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 2rem 0;
+}
+
+.calculator-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+}
+
+.calculator-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.calculator-header p {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.calculator-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Calculator Cards */
+.calculator-card,
+.results-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.calculator-card h2,
+.results-card h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #e74c3c;
+  padding-bottom: 0.5rem;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+.paint-info {
+  color: #6c757d;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Grid Layouts */
+.dimensions-grid,
+.openings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Reset Button */
+.reset-btn {
+  width: 100%;
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+}
+
+.reset-btn:hover {
+  background: #545b62;
+}
+
+/* Results Section */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.result-item {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e1e5e9;
+}
+
+.result-item.highlight {
+  background: #e8f5e8;
+  border-color: #4caf50;
+  grid-column: 1 / -1;
+}
+
+.result-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.result-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.result-item.highlight .result-value {
+  color: #2e7d32;
+  font-size: 1.8rem;
+}
+
+/* Cans Recommendation */
+.cans-recommendation {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #e3f2fd;
+  border-radius: 8px;
+}
+
+.cans-recommendation h3 {
+  margin: 0 0 1rem 0;
+  color: #1976d2;
+  font-size: 1.1rem;
+}
+
+.cans-grid {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.can-item {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.can-size {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1976d2;
+  margin-bottom: 0.25rem;
+}
+
+.can-count {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Paint Summary */
+.paint-summary {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #fff3e0;
+  border-radius: 8px;
+}
+
+.paint-summary h3 {
+  margin: 0 0 1rem 0;
+  color: #e65100;
+  font-size: 1.1rem;
+}
+
+.paint-details {
+  color: #6d4c41;
+  line-height: 1.5;
+}
+
+/* Tips Section */
+.tips-section {
+  padding: 1.5rem;
+  background: #f3e5f5;
+  border-radius: 8px;
+}
+
+.tips-section h3 {
+  margin: 0 0 1rem 0;
+  color: #7b1fa2;
+  font-size: 1.1rem;
+}
+
+.tips-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #6d4c41;
+}
+
+.tips-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .calculator-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .dimensions-grid,
+  .openings-grid,
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .calculator-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .paint-calculator {
+    padding: 1rem 0;
+  }
+  
+  .calculator-container {
+    padding: 0 1rem;
+  }
+  
+  .calculator-card,
+  .results-card {
+    padding: 1.5rem;
+  }
+  
+  .cans-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}

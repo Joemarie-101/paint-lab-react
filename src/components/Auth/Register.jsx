@@ -24,8 +24,19 @@ const Register = ({ onClose, switchToLogin }) => {
     e.preventDefault();
     setError('');
 
+    // Validation
+    if (!formData.email || !formData.password || !formData.confirmPassword || !formData.displayName) {
+      setError('Please fill in all fields');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
       return;
     }
 
@@ -53,6 +64,7 @@ const Register = ({ onClose, switchToLogin }) => {
               value={formData.displayName}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
           <div className="form-group">
@@ -63,6 +75,7 @@ const Register = ({ onClose, switchToLogin }) => {
               value={formData.email}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
           <div className="form-group">
@@ -73,6 +86,8 @@ const Register = ({ onClose, switchToLogin }) => {
               value={formData.password}
               onChange={handleChange}
               required
+              disabled={loading}
+              minLength="6"
             />
           </div>
           <div className="form-group">
@@ -83,6 +98,8 @@ const Register = ({ onClose, switchToLogin }) => {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
+              disabled={loading}
+              minLength="6"
             />
           </div>
           <button type="submit" disabled={loading}>
@@ -91,11 +108,21 @@ const Register = ({ onClose, switchToLogin }) => {
         </form>
         <p>
           Already have an account?{' '}
-          <button className="link-button" onClick={switchToLogin}>
+          <button 
+            type="button" 
+            className="link-button" 
+            onClick={switchToLogin}
+            disabled={loading}
+          >
             Login
           </button>
         </p>
-        <button className="close-button" onClick={onClose}>
+        <button 
+          type="button" 
+          className="close-button" 
+          onClick={onClose}
+          disabled={loading}
+        >
           Close
         </button>
       </div>

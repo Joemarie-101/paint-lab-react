@@ -1,9 +1,21 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { 
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  addDoc,
+  collection,
+  query,
+  where,
+  orderBy,
+  limit
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,6 +28,47 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+} catch (error) {
+  console.error('Firebase initialization error:', error);
+  throw error;
+}
+
+// Initialize Auth with error handling
+let auth;
+try {
+  auth = getAuth(app);
+} catch (error) {
+  console.error('Firebase Auth initialization error:', error);
+  throw error;
+}
+
+// Initialize Firestore
+let db;
+try {
+  db = getFirestore(app);
+} catch (error) {
+  console.error('Firestore initialization error:', error);
+  throw error;
+}
+
+export { auth, db };
+
+export { 
+  doc, 
+  setDoc, 
+  getDoc, 
+  getDocs, 
+  deleteDoc, 
+  updateDoc, 
+  addDoc, // Add this export
+  collection, 
+  query, 
+  where, 
+  orderBy, 
+  limit 
+};
+
+export default app;

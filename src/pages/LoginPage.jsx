@@ -1,3 +1,4 @@
+// LoginPage.jsx - Updated
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -18,6 +19,7 @@ const LoginPage = () => {
 
     const result = await login(email, password);
     if (result.success) {
+      console.log('Login successful, user role:', result.user.role);
       navigate('/');
     } else {
       setError(result.error);
@@ -64,7 +66,7 @@ const LoginPage = () => {
               {loading ? 'Logging in...' : 'Login'}
             </button>
           </form>
-          
+        
           <div className="auth-switch">
             <p>
               Don't have an account?{' '}

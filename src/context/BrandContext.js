@@ -13,20 +13,24 @@ export const useBrand = () => {
 export const BrandProvider = ({ children }) => {
   const [selectedBrands, setSelectedBrands] = useState({
     wood: '',
-    steel: '',
-    cement: ''
+    metal: '',
+    concrete: '',
+    drywall: '',
+    masonry: ''
   });
   
   const [brands] = useState({
-    wood: ['Dulux', 'Sherwin Williams', 'Benjamin Moore', 'Behr', 'Valspar'],
-    steel: ['Rust-Oleum', 'Krylon', 'Montana', 'Belton Molotow', 'MTN'],
-    cement: ['Sika', 'Master Builders', 'BASF', 'Mapei', 'Ardex']
+    wood: ['Davids', 'Rain or Shine', 'Boysen'],
+    metal: ['Rain or Shine', 'Boysen', 'Davids'],
+    concrete: ['Boysen', 'Rain or Shine', 'Davids'],
+    drywall: ['Boysen', 'Davids', 'Rain or Shine'],
+    masonry: ['Boysen', 'Davids', 'Rain or Shine']
   });
 
-  const selectBrand = (type, brand) => {
+  const selectBrand = (surfaceType, brand) => {
     setSelectedBrands(prev => ({
       ...prev,
-      [type]: brand
+      [surfaceType]: brand
     }));
   };
 
