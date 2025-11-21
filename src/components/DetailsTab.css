@@ -614,6 +614,10 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .details-tab {
+    margin-top: 10px;
+  }
+  
   .colors-grid-details {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5rem;
@@ -667,5 +671,21 @@
   
   .steps-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .color-modal-overlay {
+    top: 60px;
+    padding-top: 5px;
+  }
+  
+  .color-modal {
+    width: 98%;
+    margin: 0 auto 15px;
+  }
+  
+  .modal-content {
+    padding: 1rem;
   }
 }

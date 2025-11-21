@@ -852,6 +852,22 @@
   }
 }
 
+@media (max-width: 480px) {
+  .color-modal-overlay {
+    top: 60px;
+    padding-top: 5px;
+  }
+  
+  .color-modal {
+    width: 98%;
+    margin: 0 auto 15px;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+  }
+}
+
 /* Print Styles */
 @media print {
   .filters-bar,
