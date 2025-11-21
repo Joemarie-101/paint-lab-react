@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Joemarie-101/paint-lab-react.git/static/css/main.0202accb.css",
+    "main.js": "/Joemarie-101/paint-lab-react.git/static/js/main.17d5a8f6.js",
+    "static/js/453.c9e4bd88.chunk.js": "/Joemarie-101/paint-lab-react.git/static/js/453.c9e4bd88.chunk.js",
+    "static/media/about_poster.png": "/Joemarie-101/paint-lab-react.git/static/media/about_poster.73108be50ff5b14e846c.png",
+    "static/media/about_logo.png": "/Joemarie-101/paint-lab-react.git/static/media/about_logo.516408458c58151186d1.png",
+    "static/media/logo1.1.png": "/Joemarie-101/paint-lab-react.git/static/media/logo1.1.bb28191a860b713ba50b.png",
+    "index.html": "/Joemarie-101/paint-lab-react.git/index.html",
+    "main.0202accb.css.map": "/Joemarie-101/paint-lab-react.git/static/css/main.0202accb.css.map",
+    "main.17d5a8f6.js.map": "/Joemarie-101/paint-lab-react.git/static/js/main.17d5a8f6.js.map",
+    "453.c9e4bd88.chunk.js.map": "/Joemarie-101/paint-lab-react.git/static/js/453.c9e4bd88.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0202accb.css",
+    "static/js/main.17d5a8f6.js"
+  ]
+}
