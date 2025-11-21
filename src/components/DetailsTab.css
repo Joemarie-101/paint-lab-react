@@ -621,17 +621,20 @@
   }
   
   .color-modal-overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     align-items: flex-start;
     padding: 1rem;
-    padding-top: 70px;
-    padding-bottom: 20px;
+    padding-top: 10px;
     overflow-y: auto;
   }
   
   .color-modal {
     margin: 0 auto 20px;
     max-height: none;
-    margin-top: 0;
     width: 95%;
   }
   
