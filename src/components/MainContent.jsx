@@ -4,6 +4,7 @@ import MixTab from './MixTab';
 import DetailsTab from './DetailsTab';
 import AdminDashboard from './AdminDashboard';
 import PaintCalculator from './PaintCalculator';
+import About from './About';
 import { useAdmin } from '../context/AdminContext';
 
 export default function MainContent({ activeTab, setActiveTab }) {
@@ -19,6 +20,8 @@ export default function MainContent({ activeTab, setActiveTab }) {
         return <PaintCalculator />;
       case 'details':
         return <DetailsTab />;
+      case 'about':
+        return <About />;
       case 'admin':
         if (isAdmin) {
           return <AdminDashboard />;

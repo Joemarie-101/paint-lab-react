@@ -1,6 +1,49 @@
 // components/PaintCalculator.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import './PaintCalculator.css';
+
+const optimizeCanSizes = (cans, sizes) => {
+  const optimized = { ...cans };
+  const sorted = [...sizes].sort((a, b) => a - b);
+  
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const smaller = sorted[i];
+    const larger = sorted[i + 1];
+    
+    if (optimized[smaller] && smaller * optimized[smaller] >= larger) {
+      const howManyLarger = Math.floor((smaller * optimized[smaller]) / larger);
+      optimized[larger] = (optimized[larger] || 0) + howManyLarger;
+      optimized[smaller] = optimized[smaller] - Math.ceil((larger * howManyLarger) / smaller);
+      
+      if (optimized[smaller] <= 0) {
+        delete optimized[smaller];
+      }
+    }
+  }
+  
+  return optimized;
+};
+
+const calculateCanSizes = (gallons, sizes) => {
+  let remaining = gallons;
+  const cans = {};
+  
+  // Sort sizes in descending order
+  const sortedSizes = [...sizes].sort((a, b) => b - a);
+  
+  sortedSizes.forEach(size => {
+    cans[size] = Math.floor(remaining / size);
+    remaining = remaining % size;
+  });
+  
+  // If there's remaining paint, add one more of the smallest can
+  if (remaining > 0) {
+    const smallestCan = sortedSizes[sortedSizes.length - 1];
+    cans[smallestCan] = (cans[smallestCan] || 0) + 1;
+  }
+  
+  return optimizeCanSizes(cans, sortedSizes);
+};
 
 export default function PaintCalculator() {
   const [roomType, setRoomType] = useState('bedroom');
@@ -21,7 +64,7 @@ export default function PaintCalculator() {
   const [results, setResults] = useState(null);
 
   // Enhanced room type presets with realistic coverage adjustments
-  const roomTypes = {
+  const roomTypes = useMemo(() => ({
     bedroom: { 
       name: 'Bedroom', 
       coverageMultiplier: 1.0,
@@ -58,10 +101,10 @@ export default function PaintCalculator() {
       typicalWindows: 1,
       typicalDoors: 1
     }
-  };
+  }), []);
 
   // Paint brands with their specific products
-  const paintBrands = {
+  const paintBrands = useMemo(() => ({
     boysen: {
       name: 'Boysen',
       products: {
@@ -92,33 +135,33 @@ export default function PaintCalculator() {
         quickCoat: { name: 'Rian Quick Coat', coverage: 38, pricePerGallon: 500, requiresPrimer: false }
       }
     }
-  };
+  }), []);
 
   // Surface types with descriptions
-  const surfaceTypes = {
+  const surfaceTypes = useMemo(() => ({
     smooth: { name: 'Smooth (plasterboard, finished plaster)', multiplier: 1.0 },
     textured: { name: 'Textured (light texture, orange peel)', multiplier: 0.85 },
     rough: { name: 'Rough (brick, concrete, heavy texture)', multiplier: 0.7 },
     porous: { name: 'Porous (unsealed drywall, bare wood)', multiplier: 0.6 }
-  };
+  }), []);
 
   // Standard opening sizes (in square meters)
-  const openingSizes = {
+  const openingSizes = useMemo(() => ({
     standardDoor: 1.9,
     largeDoor: 2.5,
     standardWindow: 1.5,
     largeWindow: 2.5,
     smallWindow: 0.8
-  };
+  }), []);
 
   // Set default product when brand changes
   useEffect(() => {
     const brandProducts = paintBrands[paintBrand].products;
     const firstProduct = Object.keys(brandProducts)[0];
     setPaintProduct(firstProduct);
-  }, [paintBrand]);
+  }, [paintBrand, paintBrands]);
 
-  const calculatePaint = () => {
+  const calculatePaint = useCallback(() => {
     // Guard clause to prevent calculation if product data isn't available
     if (!paintProduct || !paintBrands[paintBrand]?.products?.[paintProduct]) {
       return;
@@ -144,7 +187,7 @@ export default function PaintCalculator() {
     const doorArea = doors * openingSizes.standardDoor;
     const windowArea = windows * openingSizes.standardWindow;
     const totalOpenings = doorArea + windowArea;
-    
+
     // Total paintable area
     const paintableArea = Math.max(0, totalArea - totalOpenings);
     
@@ -199,54 +242,27 @@ export default function PaintCalculator() {
       totalWithPrimer: Math.round((totalCost + primerCost) * 100) / 100,
       pricePerGallon
     });
-  };
-
-  const calculateCanSizes = (gallons, sizes) => {
-    let remaining = gallons;
-    const cans = {};
-    
-    // Sort sizes in descending order
-    const sortedSizes = [...sizes].sort((a, b) => b - a);
-    
-    sortedSizes.forEach(size => {
-      cans[size] = Math.floor(remaining / size);
-      remaining = remaining % size;
-    });
-    
-    // If there's remaining paint, add one more of the smallest can
-    if (remaining > 0) {
-      const smallestCan = sortedSizes[sortedSizes.length - 1];
-      cans[smallestCan] = (cans[smallestCan] || 0) + 1;
-    }
-    
-    return optimizeCanSizes(cans, sortedSizes);
-  };
-
-  const optimizeCanSizes = (cans, sizes) => {
-    const optimized = { ...cans };
-    const sorted = [...sizes].sort((a, b) => a - b);
-    
-    for (let i = 0; i < sorted.length - 1; i++) {
-      const smaller = sorted[i];
-      const larger = sorted[i + 1];
-      
-      if (optimized[smaller] && smaller * optimized[smaller] >= larger) {
-        const howManyLarger = Math.floor((smaller * optimized[smaller]) / larger);
-        optimized[larger] = (optimized[larger] || 0) + howManyLarger;
-        optimized[smaller] = optimized[smaller] - Math.ceil((larger * howManyLarger) / smaller);
-        
-        if (optimized[smaller] <= 0) {
-          delete optimized[smaller];
-        }
-      }
-    }
-    
-    return optimized;
-  };
+  }, [
+    paintProduct,
+    paintBrands,
+    paintBrand,
+    roomDimensions,
+    includeWalls,
+    includeCeiling,
+    doors,
+    windows,
+    openingSizes,
+    surfaceTypes,
+    surfaceType,
+    roomTypes,
+    roomType,
+    coats,
+    wastagePercentage
+  ]);
 
   useEffect(() => {
     calculatePaint();
-  }, [roomType, roomDimensions, windows, doors, coats, paintBrand, paintProduct, surfaceType, includeCeiling, includeWalls, wastagePercentage]);
+  }, [calculatePaint]);
 
   // Set typical values when room type changes
   useEffect(() => {
@@ -255,7 +271,7 @@ export default function PaintCalculator() {
       setWindows(typical.typicalWindows);
       setDoors(typical.typicalDoors);
     }
-  }, [roomType]);
+  }, [roomType, roomTypes]);
 
   const handleDimensionChange = (dimension, value) => {
     setRoomDimensions(prev => ({

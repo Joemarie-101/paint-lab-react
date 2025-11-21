@@ -113,6 +113,13 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           📋 My Colors
         </div>
         
+        <div 
+          className={`sidebar-item ${activeTab === 'about' ? 'active' : ''}`}
+          onClick={() => handleTabClick('about')}
+        >
+          ℹ️ About
+        </div>
+
         {/* Admin Panel - Only show for admin users as a regular tab */}
         {isAdmin && (
           <div 

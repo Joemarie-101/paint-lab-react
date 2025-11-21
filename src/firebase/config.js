@@ -1,6 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { 
+  getAuth, 
+  setPersistence, 
+  browserLocalPersistence 
+} from "firebase/auth";
 import { 
   getFirestore,
   doc,
@@ -40,6 +44,9 @@ try {
 let auth;
 try {
   auth = getAuth(app);
+  setPersistence(auth, browserLocalPersistence).catch((error) => {
+    console.error('Firebase persistence error:', error);
+  });
 } catch (error) {
   console.error('Firebase Auth initialization error:', error);
   throw error;

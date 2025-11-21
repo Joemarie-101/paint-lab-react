@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-import { AdminProvider, useAdmin } from "./context/AdminContext";
+import { AdminProvider } from "./context/AdminContext";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
@@ -15,8 +15,15 @@ import "./App.css";
 // Main App Layout (with sidebar)
 function AppLayout() {
   const [activeTab, setActiveTab] = useState("brand");
-  const { currentUser } = useAuth();
-  const { isAdmin } = useAdmin();
+  const { currentUser, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="app-loading">
+        Checking your session...
+      </div>
+    );
+  }
 
   // If user is not logged in, show login page
   if (!currentUser) {

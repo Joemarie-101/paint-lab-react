@@ -7,12 +7,8 @@ import {
   getDocs, 
   deleteDoc, 
   updateDoc,
-  addDoc,
-  query,
-  where
+  addDoc
 } from './config';
-import { auth } from './config';
-import { deleteUser as deleteAuthUser } from 'firebase/auth';
 
 // Admin Collections
 const ADMIN_COLLECTIONS = {

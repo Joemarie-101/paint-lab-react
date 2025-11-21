@@ -620,6 +620,17 @@
     padding: 0 1rem;
   }
   
+  .color-modal-overlay {
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  
+  .color-modal {
+    margin: 1rem auto;
+    max-height: calc(100vh - 2rem);
+    margin-top: 2rem;
+  }
+  
   .modal-header {
     flex-direction: column;
     text-align: center;
@@ -633,12 +644,15 @@
     flex-direction: column;
   }
   
-  .color-modal {
-    margin: 1rem;
-    max-height: calc(100vh - 2rem);
+  .color-details-modal {
+    grid-template-columns: 1fr;
   }
   
-  .color-details-modal {
+  .modal-content {
+    padding: 1.5rem;
+  }
+  
+  .steps-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -331,7 +331,7 @@ export default function MixTab() {
     };
 
     try {
-      const savedColor = await addColorToHistory(colorData);
+      await addColorToHistory(colorData);
       setColorName('');
       setShowColorModal(false);
       alert('Color saved to your collection successfully!');
@@ -367,7 +367,6 @@ export default function MixTab() {
     const g = parseInt(hex.substr(3, 2), 16);
     const b = parseInt(hex.substr(5, 2), 16);
     
-    const isDark = (r + g + b) < 384;
     const isWarm = r > g && r > b;
     const isCool = b > r && b > g;
     const isGreen = g > r && g > b;

@@ -1,5 +1,5 @@
 // LoginPage.jsx - Updated
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../components/Auth/Auth.css';
@@ -8,14 +8,20 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const [submitting, setSubmitting] = useState(false);
+  const { login, currentUser, loading } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && currentUser) {
+      navigate('/');
+    }
+  }, [currentUser, loading, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setLoading(true);
+    setSubmitting(true);
 
     const result = await login(email, password);
     if (result.success) {
@@ -24,7 +30,7 @@ const LoginPage = () => {
     } else {
       setError(result.error);
     }
-    setLoading(false);
+    setSubmitting(false);
   };
 
   return (
@@ -62,8 +68,8 @@ const LoginPage = () => {
               />
             </div>
             
-            <button type="submit" disabled={loading} className="auth-button">
-              {loading ? 'Logging in...' : 'Login'}
+            <button type="submit" disabled={submitting || loading} className="auth-button">
+              {submitting ? 'Logging in...' : 'Login'}
             </button>
           </form>
         

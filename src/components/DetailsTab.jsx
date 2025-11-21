@@ -439,7 +439,7 @@ export default function DetailsTab() {
                   )}
 
                   <div className="save-section-modal">
-                    <h4>Update Color</h4>
+                    <h4>Update Colo Name</h4>
                     <div className="save-controls-modal">
                       <input
                         type="text"
@@ -453,7 +453,7 @@ export default function DetailsTab() {
                         className="save-btn-modal"
                         disabled={!colorName.trim()}
                       >
-                        💾 Update Color
+                        💾 Update Color Name
                       </button>
                     </div>
                   </div>

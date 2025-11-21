@@ -9,7 +9,6 @@ export default function AdminDashboard() {
     systemStats,
     users,
     brandColors,
-    colorMixes,
     userColors,
     systemSettings,
     refreshData,
@@ -20,8 +19,6 @@ export default function AdminDashboard() {
     addBrandColor,
     updateBrandColor,
     removeBrandColor,
-    removeColorMix,
-    updateUserColor,
     deleteUserColor,
     updateSettings
   } = useAdmin();
@@ -43,10 +40,6 @@ export default function AdminDashboard() {
   // Modal state
   const [showColorModal, setShowColorModal] = useState(false);
   const [modalMode, setModalMode] = useState('add'); // 'add' or 'edit'
-
-  // Combine all user-created colors from colorHistory
-  // userColors already contains all colors from colorHistory collection
-  const allUserColors = userColors;
 
   // Refresh data when panel opens
   useEffect(() => {
@@ -414,7 +407,6 @@ export default function AdminDashboard() {
                 <span>Display Name</span>
                 <span>Role</span>
                 <span>Status</span>
-                <span>Joined</span>
                 <span>Actions</span>
               </div>
               {users.map(user => (
@@ -438,9 +430,6 @@ export default function AdminDashboard() {
                     ) : (
                       <span className="status-badge active">Active</span>
                     )}
-                  </span>
-                  <span data-label="Joined">
-                    {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
                   </span>
                   <span className="actions" data-label="Actions">
                     {user.disabled ? (
