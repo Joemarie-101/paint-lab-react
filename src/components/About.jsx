@@ -36,20 +36,28 @@ export default function About() {
         </section>
 
         <section className="about-section">
+          <h2>Paint Services</h2>
+          <p>
+            Transform your space with our expert paint services. Our vibrant Coloring Your Home campaign highlights how we help you achieve the perfect look with professional guidance and premium paint solutions. From selecting the ideal color palette to applying the final brushstroke, our team ensures every project is executed with precision and creativity. Whether you're refreshing a single room or transforming your entire home, Joe's Paint Lab provides comprehensive solutions tailored to your vision.
+          </p>
+        </section>
+
+        <section className="about-section">
           <h2>Get In Touch</h2>
           <p>
             Have questions or need expert advice? We're here to help!
           </p>
           <div className="contact-info">
-            <p>📞 123-456-7890</p>
+            <p>📞 0916-426-9840</p>
             <p>📧 Joe's.paintlab@gmail.com</p>
             <p>🌐 www.joe'spaintlabsite.com</p>
+            <p>📺 <a href="https://youtube.com/watch?v=I7VNKcOpOQQ&si=8OXZkqEMZDKiy4jx" target="_blank" rel="noopener noreferrer">Watch our YouTube channel</a></p>
           </div>
         </section>
       </div>
       <div className="about-images">
         <img src={aboutPoster} alt="Paint Services" className="about-img poster" />
-        <img src={aboutLogo} alt="Joe's Paint Lab Logo" className="about-img logo" />
+        <img src={aboutLogo} alt="JPaint Services" className="about-img logo" />
       </div>
     </div>
   );
