@@ -197,25 +197,23 @@
   }
   
   .sidebar {
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100vh;
+    top: 60px;
+    left: -200px;
+    width: 200px;
+    height: calc(100vh - 60px);
     transition: left 0.3s ease;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .sidebar.open {
-    margin-top: 5px;
     left: 0;
   }
   
   .sidebar.closed {
-    left: -250px;
+    left: -200px;
   }
   
   .sidebar.desktop {
-    /* Reset for desktop */
     left: 0;
     top: 0;
     height: 100vh;
@@ -239,19 +237,23 @@
   
   .main-content {
     margin-left: 0;
-    padding: 80px 20px 20px;
+    padding: 80px 15px 20px;
   }
 
-  /* Hide sidebar logo on mobile since it's in the header */
   .sidebar-logo {
     display: none;
+  }
+
+  .sidebar-item {
+    padding: 10px 12px;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 480px) {
   .sidebar {
-    width: 100%;
-    left: -100%;
+    width: 180px;
+    left: -180px;
   }
   
   .sidebar.open {
