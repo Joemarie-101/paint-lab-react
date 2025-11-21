@@ -623,12 +623,19 @@
   .color-modal-overlay {
     align-items: flex-start;
     padding: 1rem;
+    padding-top: 80px;
   }
   
   .color-modal {
-    margin: 1rem auto;
-    max-height: calc(100vh - 2rem);
-    margin-top: 2rem;
+    margin: 0 auto;
+    max-height: calc(100vh - 100px);
+    margin-top: 0;
+  }
+  
+  .close-modal {
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 100;
   }
   
   .modal-header {
