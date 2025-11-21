@@ -51,7 +51,7 @@ export default function About() {
             <p>📞 0916-426-9840</p>
             <p>📧 Joe's.paintlab@gmail.com</p>
             <p>🌐 www.joe'spaintlabsite.com</p>
-            <p>📺 <a href="https://youtube.com/watch?v=I7VNKcOpOQQ&si=8OXZkqEMZDKiy4jx" target="_blank" rel="noopener noreferrer">Watch our YouTube channel</a></p>
+            <p>📺 <a href="https://www.youtube.com/watch?v=I7VNKcOpOQQ" >   Watch our YouTube channel</a></p>
           </div>
         </section>
       </div>
