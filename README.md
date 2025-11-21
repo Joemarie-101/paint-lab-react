@@ -7,7 +7,7 @@ A web-based application for paint color selection, mixing formulas, and project 
 ### Prerequisites
 - Node.js (v14 or higher)
 - npm or yarn
-- PostgreSQL database
+- Firebase account
 
 ### Installation
 
@@ -25,7 +25,7 @@ npm install
 3. Set up environment variables:
 ```bash
 cp .env.example .env
-# Edit .env with your database and API configurations
+# Edit .env with your Firebase configuration
 ```
 
 4. Start the development server:
@@ -44,7 +44,7 @@ npm start
 
 - **Frontend**: React.js, HTML5, CSS3
 - **Backend**: Node.js, Express.js
-- **Database**: PostgreSQL
+- **Database**: Firebase Firestore
 - **Authentication**: Firebase Auth
 - **Deployment**: Cloud hosting platform
 
